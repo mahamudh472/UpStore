@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <ul class="list-group col-lg-3 my-3">
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Women's and Children's Fashion</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Health & Beauty</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Watches, Bags, Jwelllery</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Men's and Boy's Fashion</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Mother and baby</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Electronics Device</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">TV & Home Appliances</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Electronic Accessories</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Groceries</span>
+                    </li>
+                    <li class="list-group-item sm-text text-secondary ">
+                        <span><i class="fa fa-user mx-1"></i></span>
+                        <span class="">Sprots & Outdoors</span>
+                    </li>
+                </ul>
+                <div class="col-lg-9 my-3">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'gallery/7dd9370f-20f9-4cef-8778-f6eff550c136.jpg_1200x1200.jpg' %}" class="d-block w-100"
+                                    alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'gallery/a35eb3b2-6a6a-4dca-978a-b2c41a6783ca.jpg' %}" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'gallery/b337144d-f37f-4011-baa8-bfbb143446a8.jpg' %}" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row p-3 bg-body-white my-4">
+                <div class="col-lg-2 pr-3">
+                    <img src="{% static 'gallery/best-price-tag.png' %}" alt="" class="img-fluid ">
+                    <div class="fs-6 text-center bold">Best Price Guaranteed</div>
+                    <div class="border-right pr-3"></div>
+                </div>
+                <div class="col-lg-2 pr-3">
+                    <img src="{% static 'gallery/9f19fb02-e022-473a-873d-bb99306c9263.png' %}" alt="" class="img-fluid ">
+                    <div class="fs-6 text-center bold">Everyday Low Price</div>
+                    <div class="border-right pr-3"></div>
+                </div>
+                <div class="col-lg-2 pr-3">
+                    <img src="{% static 'gallery/whole sale tag.png' %}" alt="" class="img-fluid ">
+                    <div class="fs-6 text-center bold">Whole Sale price</div>
+                    <div class="border-right pr-3"></div>
+                </div>
+                <div class="col-lg-2 pr-3">
+                    <img src="{% static 'gallery/free-delivery-tag.png' %}" alt="" class="img-fluid ">
+                    <div class="fs-6 text-center bold">Free Delivery</div>
+                    <div class="border-right pr-3"></div>
+                </div>
+                <div class="col-lg-2 pr-3">
+                    <img src="{% static 'gallery/mart-tag.png' %}" alt="" class="img-fluid ">
+                    <div class="fs-6 text-center bold">Mart</div>
+                    <div class="border-right pr-3"></div>
+                </div>
+                <div class="col-lg-2 pr-3">
+                    <img src="{% static 'gallery/fashion tag.png' %}" alt="" class="img-fluid ">
+                    <div class="fs-6 text-center bold">Fashion</div>
+                    <div class="border-right pr-3"></div>
+                </div>
+                
+                
+               
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container my-4">
+            <h3>Just For You</h3>
+            <div class="product-container">
+                {% for product in products %}
+                {% include 'components/product_card.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+ {% endblock %}

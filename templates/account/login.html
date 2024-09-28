@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% load static %} {% block title %}Login{% endblock %} {% block content %}
+    <div class="container" style="margin-bottom: 200px;">
+        <h2 class="m-4 ">Welcome to Upstore! please login.</h2>
+        <div class="row col-8 m-auto py-5 border my-5 ">
+            <form action="{% url 'account:login' %}" method="post" class="row">
+                {% csrf_token %}
+            <div class="col-7 px-3">
+                <div class="form-group">
+                    <lable>Email or username*</lable>
+                <input type="text" name="username" id="" class="form-control" required>
+                </div>
+                <div class="form-group mt-3">
+                    <lable>Password*</lable>
+                    <input type="password" name="password" id="" class="form-control" required>
+                </div> 
+                <a class="text-end text-decoration-none fs-6 my-2 d-block" href="#">Reset your password?</a>
+            </div>
+            <div class="col-5">
+                <button class="btn btn-warning w-100" type="submit">Login</button>
+                <div class="my-2">
+                    Or, Login with
+                </div>
+                <button class="btn btn-primary w-100 my-2">Facebook</button>
+                <button class="btn btn-danger w-100">Google</button>
+            </div></form>
+
+        </div>
+        <div class="text-center  text-muted ">New member? <a href="{% url 'accounts:register' %}">Register</a> here</div>
+
+    </div>
+
+
+{% endblock %}

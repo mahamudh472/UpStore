@@ -1,0 +1,151 @@
+{% extends "base.html" %} {% load static %} {% block title %}My Shopping Cart{% endblock %} {% block content %}
+
+<div class="container mt-4 bg-white my-4">
+    <nav aria-label="breadcrumb">
+        
+        <ol class="breadcrumb">
+            <a href="{% url 'main:home' %}"><i class="fa fa-house my-1 mx-2"></i></a>
+            <li class="breadcrumb-item"><a href="#">{{product.category}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-lg-3">
+            <img style="width: 100%;" src="{{product.image_url.url}}" alt="">
+        </div>
+        <div class="col-lg-6">
+            <h1>{{product.name}}</h1>
+            <div class="review">
+                <img src="{% static 'gallery/vecteezy_5-star-rating-review-star-png-transparent_9663927_155.png' %}"
+                    width="80px" alt="">
+                <span class="text-secondary ">(97)</span>Ratings
+            </div>
+            <hr>
+            <div class="text-primary bold h2">
+                $ {{product.price}}
+            </div>
+            <div class="wrap">
+                <span class="text-secondary text-decoration-line-through ">$ 50</span>
+                <span class="text-secondary ">-40%</span>
+            </div>
+
+            <div class="wrap">
+                <div class="row">
+                    <div class="col-4 h4">
+                        Quantity
+                    </div>
+                    <div class="col">
+                        <form>
+                            <button class="ml-4 btn-minus" type="button"><i class="fa fa-minus"></i></button>
+
+                            <input type="number" value="1" min="1" max="10" width="15px" style="text-align: center;" name="quantity">
+                            <button class="btn-plus" type="button"><i class="fa fa-plus"></i></button>
+                            <input type="hidden" name="product-name" value="{{product.name}}">
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    <button class="btn btn-primary btn-buy-now">Buy Now</button>
+                    
+
+                </div>
+                <div class="col">
+                    <button class="btn btn-warning btn-add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+        </div>
+        
+
+        <div class="col-lg-3 bg-secondary-light">
+            <h5>Delivery</h5>
+            <div class="row">
+                <div class="col-1">
+                    <i class="fa fa-location-dot"></i>
+                </div>
+                <div class="col-8">
+                    Dhaka, Dhaka North, Banani Road No. 12 - 19
+                </div>
+                <div class="col-2"><a href="">Change</a></div>
+            </div><hr>
+            <div class="row">
+                <div class="col-1">
+                    <i class="fa fa-truck"></i>
+                </div>
+                <div class="col-7">
+                    Standard Delivery: 
+                </div>
+                <div class="col-3">৳ 50</div>
+            </div><hr>
+            <div class="row">
+                <div class="col-1">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                <div class="col-8">
+                    Delivery by 12th Aug
+                </div>
+        
+            </div><hr>
+            <div class="row">
+                <div class="col-1">
+                    <i class="fa fa-credit-card"></i>
+                </div>
+                <div class="col-8">
+                    Cash on Delivery Available
+                </div>
+ 
+            </div><hr>
+
+        </div>
+    </div>
+    
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+
+    $(document).ready(function(){
+        $('.btn-plus').click(function(){
+            var value = parseInt($('input[type="number"]').val());
+            if(value < 10){
+                value = value + 1;
+                $('input[type="number"]').val(value);
+            }
+        })
+        $('.btn-minus').click(function(){
+            var value = parseInt($('input[type="number"]').val());
+            if(value > 1){
+                value = value - 1;
+                $('input[type="number"]').val(value);
+            }
+        })
+        // use ajax to add to cart
+        $('.btn-add-to-cart').click(function(e){
+            e.preventDefault();
+            var quantity = $('input[name="quantity"]').val();
+            var product_name = $('input[name="product-name"]').val();
+            $.ajax({
+                url: "{% url 'store:add-to-cart' %}",
+                type: 'POST',
+                data: {
+                    'quantity': quantity,
+                    'product_name': product_name,
+                    'csrfmiddlewaretoken': '{{csrf_token}}'
+                },
+                success: function(response){
+                    console.log(response);
+                    $('.cart-count').text(response.cart_count);
+                }
+            })
+        })
+    })
+        
+</script>
+
+{% endblock %}

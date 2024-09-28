@@ -1,0 +1,25 @@
+{% load static %}
+<a href="{% url 'store:product-details' product.id %}">
+    <div class="card   ">
+        <div class="aspect-ratio-16x9">
+            <img src="{{product.image_url.url}}" class="card-img-top img-fluid card-img" alt="...">
+        </div>
+
+        
+        <div class="card-body">
+            <h5 class="fs-5 product-title truncate-text">{{product.name}}</h5>
+            <div class="text-primary bold">
+                $ {{product.price}}
+            </div>
+            <div class="wrap">
+                <span class="text-secondary text-decoration-line-through ">$ 50</span>
+                <span class="text-secondary ">-40%</span>
+            </div>
+            <div class="review">
+                <img src="{% static 'gallery/vecteezy_5-star-rating-review-star-png-transparent_9663927_155.png' %}" width="80px"
+                    alt="">
+                <span class="text-secondary ">(97)</span>
+            </div>
+        </div>
+    </div>
+</a>
