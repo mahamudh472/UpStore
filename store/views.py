@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
 from store.models import *
+from rest_framework import viewsets
+from .serializer import ProductSerializer
+
+
 # Create your views here.
 def home(request):
     return render(request, 'store/home.html')
@@ -53,3 +57,8 @@ def removeFromCart(request, id):
 
     Cart.objects.get(name=product.name).delete()
     return redirect('store:cart')
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+

@@ -2,7 +2,7 @@
 <a href="{% url 'store:product-details' product.id %}">
     <div class="card   ">
         <div class="aspect-ratio-16x9">
-            <img src="{{product.image_url.url}}" class="card-img-top img-fluid card-img" alt="...">
+            <img src="{% if product.image_url %} {{product.image_url.url}} {% else %} {% static "gallery/demo.webp" %} {% endif %}" class="card-img-top img-fluid card-img" alt="...">
         </div>
 
         

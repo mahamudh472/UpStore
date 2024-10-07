@@ -1,5 +1,9 @@
 from django.urls import path
 from . import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'product', views.ProductViewSet)
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -11,3 +15,4 @@ urlpatterns = [
     path('add-to-cart/', views.addToCart, name='add-to-cart'),
     path('remove-from-cart/<int:id>', views.removeFromCart, name='remove-from-cart'),
 ]
+urlpatterns += router.urls

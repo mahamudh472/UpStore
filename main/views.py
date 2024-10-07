@@ -17,3 +17,5 @@ def about(request):
 def contact(request):
     return render(request,'main/contact.html')
 
+def handler404(self, *args, **kwargs):
+    return render(self, '404.html')

@@ -11,7 +11,7 @@
     </nav>
     <div class="row">
         <div class="col-lg-3">
-            <img style="width: 100%;" src="{{product.image_url.url}}" alt="">
+            <img style="width: 100%;" src="{% if product.image_url %} {{product.image_url.url}} {% else %} {% static "gallery/demo.webp" %} {% endif %}" alt="">
         </div>
         <div class="col-lg-6">
             <h1>{{product.name}}</h1>

@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
     price = models.FloatField()
-    stock = models.IntegerField()
+    stock = models.IntegerField(default=0)
     image_url = models.ImageField(upload_to='images/', null=True, blank=True)
     brand = models.CharField(max_length=255, null=True, blank=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
