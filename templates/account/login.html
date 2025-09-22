@@ -1,32 +1,50 @@
 {% extends "base.html" %} {% load static %} {% block title %}Login{% endblock %} {% block content %}
     <div class="container" style="margin-bottom: 200px;">
-        <h2 class="m-4 ">Welcome to Upstore! please login.</h2>
-        <div class="row col-8 m-auto py-5 border my-5 ">
-            <form action="{% url 'account:login' %}" method="post" class="row">
-                {% csrf_token %}
-            <div class="col-7 px-3">
-                <div class="form-group">
-                    <lable>Email or username*</lable>
-                <input type="text" name="username" id="" class="form-control" required>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold text-primary mb-2">Welcome Back to Upstore!</h2>
+                    <p class="text-muted">Please sign in to your account</p>
                 </div>
-                <div class="form-group mt-3">
-                    <lable>Password*</lable>
-                    <input type="password" name="password" id="" class="form-control" required>
-                </div> 
-                <a class="text-end text-decoration-none fs-6 my-2 d-block" href="#">Reset your password?</a>
+                <div class="card border-0 shadow-lg rounded-4">
+                    <div class="card-body p-5">
+                        <form action="{% url 'accounts:login' %}" method="post" class="row">
+                            {% csrf_token %}
+                            <div class="col-lg-7 pe-4">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="username" id="username" class="form-control" placeholder="Email or username" required>
+                                    <label for="username">Email or username*</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                    <label for="password">Password*</label>
+                                </div> 
+                                <div class="text-end mb-3">
+                                    <a class="text-decoration-none text-primary" href="#">Forgot your password?</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 ps-4 border-start">
+                                <button class="btn btn-warning w-100 py-3 mb-3 fw-bold" type="submit">
+                                    <i class="fa fa-sign-in-alt me-2"></i>Login
+                                </button>
+                                <div class="text-center text-muted mb-3">
+                                    Or, Login with
+                                </div>
+                                <button class="btn btn-primary w-100 mb-2" type="button">
+                                    <i class="fab fa-facebook me-2"></i>Facebook
+                                </button>
+                                <button class="btn btn-danger w-100" type="button">
+                                    <i class="fab fa-google me-2"></i>Google
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="text-center mt-4 text-muted">
+                    New member? <a href="{% url 'accounts:register' %}" class="text-primary text-decoration-none fw-semibold">Register here</a>
+                </div>
             </div>
-            <div class="col-5">
-                <button class="btn btn-warning w-100" type="submit">Login</button>
-                <div class="my-2">
-                    Or, Login with
-                </div>
-                <button class="btn btn-primary w-100 my-2">Facebook</button>
-                <button class="btn btn-danger w-100">Google</button>
-            </div></form>
-
         </div>
-        <div class="text-center  text-muted ">New member? <a href="{% url 'accounts:register' %}">Register</a> here</div>
-
     </div>
 
 

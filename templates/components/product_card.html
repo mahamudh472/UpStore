@@ -1,24 +1,21 @@
 {% load static %}
-<a href="{% url 'store:product-details' product.id %}">
-    <div class="card   ">
-        <div class="aspect-ratio-16x9">
+<a href="{% url 'store:product-details' product.id %}" class="text-decoration-none">
+    <div class="card shadow-sm border-0 mb-2 h-100 rounded-4 product-card">
+        <div class="aspect-ratio-16x9 rounded-4 overflow-hidden">
             <img src="{% if product.image_url %} {{product.image_url.url}} {% else %} {% static "gallery/demo.webp" %} {% endif %}" class="card-img-top img-fluid card-img" alt="...">
         </div>
 
         
         <div class="card-body">
-            <h5 class="fs-5 product-title truncate-text">{{product.name}}</h5>
-            <div class="text-primary bold">
-                $ {{product.price}}
+            <h5 class="fs-5 product-title truncate-text mb-2">{{product.name}}</h5>
+            <div class="d-flex align-items-center mb-2">
+                <span class="text-primary bold h5 mb-0 me-2">$ {{product.price}}</span>
+                <span class="text-secondary text-decoration-line-through small">$ 50</span>
+                <span class="badge bg-success ms-2">-40%</span>
             </div>
-            <div class="wrap">
-                <span class="text-secondary text-decoration-line-through ">$ 50</span>
-                <span class="text-secondary ">-40%</span>
-            </div>
-            <div class="review">
-                <img src="{% static 'gallery/vecteezy_5-star-rating-review-star-png-transparent_9663927_155.png' %}" width="80px"
-                    alt="">
-                <span class="text-secondary ">(97)</span>
+            <div class="review d-flex align-items-center">
+                <img src="{% static 'gallery/vecteezy_5-star-rating-review-star-png-transparent_9663927_155.png' %}" width="70px" alt="">
+                <span class="text-secondary ms-2">(97)</span>
             </div>
         </div>
     </div>

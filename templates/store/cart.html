@@ -1,44 +1,100 @@
 {% extends "base.html" %} {% load static %} {% block title %}My Shopping Cart{% endblock %} {% block content %}
 <div class="container" style="margin-bottom: 200px;">
-    <h2 class="m-4 ">My Shopping Cart</h2>
-    <div class="row col-8 m-auto py-5 border my-5 ">
-        <div class="col-12 px-3">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>SL</th>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in items %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.product.price }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.subtotal }}</td>
-                        <td>
-                            <a href="{% url 'store:remove-from-cart' item.product.id %}">Remove</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    <tr>
-                        <td colspan="4"></td>
-                        <td colspan="2">Total: {{ total }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-12">
-            <a href="{% url 'store:checkout' %}" class="btn btn-warning w-100">Checkout</a>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-primary mb-2">
+                    <i class="fa fa-shopping-cart me-2"></i>My Shopping Cart
+                </h2>
+                <p class="text-muted">Review your items before checkout</p>
+            </div>
+            
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th class="border-0 rounded-start">#</th>
+                                    <th class="border-0">Product</th>
+                                    <th class="border-0">Price</th>
+                                    <th class="border-0">Quantity</th>
+                                    <th class="border-0">Subtotal</th>
+                                    <th class="border-0 rounded-end">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr class="cart-item">
+                                    <td class="align-middle">{{ forloop.counter }}</td>
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{% if item.product.image_url %}{{ item.product.image_url.url }}{% else %}{% static 'gallery/demo.webp' %}{% endif %}" 
+                                                 width="50" height="50" class="rounded me-3" alt="{{ item.name }}">
+                                            <div>
+                                                <h6 class="mb-0">{{ item.name }}</h6>
+                                                <small class="text-muted">SKU: #{{ item.product.id }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        <span class="fw-semibold text-primary">${{ item.product.price }}</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <span class="badge bg-secondary px-3 py-2">{{ item.quantity }}</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <span class="fw-bold text-success">${{ item.subtotal }}</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="{% url 'store:remove-from-cart' item.product.id %}" 
+                                           class="btn btn-outline-danger btn-sm">
+                                            <i class="fa fa-trash me-1"></i>Remove
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-5">
+                                        <i class="fa fa-shopping-cart text-muted display-4 mb-3"></i>
+                                        <h5 class="text-muted">Your cart is empty</h5>
+                                        <a href="{% url 'main:home' %}" class="btn btn-primary mt-3">
+                                            <i class="fa fa-shopping-bag me-2"></i>Continue Shopping
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% if items %}
+                                <tr class="table-light">
+                                    <td colspan="4" class="text-end fw-bold">
+                                        <h5 class="mb-0">Total Amount:</h5>
+                                    </td>
+                                    <td colspan="2">
+                                        <h4 class="text-success fw-bold mb-0">${{ total }}</h4>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    {% if items %}
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <a href="{% url 'main:home' %}" class="btn btn-outline-secondary w-100 py-3">
+                                <i class="fa fa-arrow-left me-2"></i>Continue Shopping
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{% url 'store:checkout' %}" class="btn btn-warning w-100 py-3 fw-bold">
+                                <i class="fa fa-credit-card me-2"></i>Proceed to Checkout
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-
 {% endblock %}

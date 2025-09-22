@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% load static %} {% block title %}Register{% endblock %} {% block content %}
+<div class="container my-4" style="margin-bottom: 200px;">
+    <h2 class="m-4 ">Get Started with UpStore! </h2>
+    <form action="{% url 'account:register' %}" method="post">
+    <div class="row col-8 m-auto py-2 border">
+
+        {% csrf_token %}
+        <div class="col-7 px-3">
+            <div class="form-group">
+                <lable>Email*</lable>
+                <input type="email" name="email" id="" class="form-control" required>
+            </div>
+            <div class="form-group mt-2">
+                <lable>Password*</lable>
+                <input type="password" name="password" id="" class="form-control" required>
+            </div>
+            <div class="form-group mt-2">
+                <lable>Confirm Password*</lable>
+                <input type="password" name="password2" id="" class="form-control" required>
+            </div>
+            <div class="form-group mt-2">
+                <lable>Address*</lable>
+                <input type="text" name="address" id="" class="form-control" required>
+            </div>
+            <label for="" class="mt-2">Date of Birth*</label>
+            <div class="input-group ">
+
+                <input type="date" class="form-control" placeholder="date-of-birth" aria-label="Username" required>
+                <span class="input-group-text">@</span>
+                <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon"
+                    name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="col-5">
+            <div class="form-group mb-2">
+                <lable>Full Name*</lable>
+                <input type="text" name="full-name" id="" class="form-control">
+            </div>
+            <div class=" mb-3">
+                <input type="checkbox" class="form-check-input ">
+                <span class="sm-text">I'd like to receive exclusive offers and promotions via SMS</span>
+                <button class="btn btn-warning w-100 my-2" type="submit">SignUp</button>
+                <p class="sm-text">By clicking “SIGN UP”, I agree to UpStore's <a href=""> Terms of Use</a> and <a
+                        href="">Privacy Policy</a></p>
+                <div class="my-2">
+                    Or, Sign Up with
+                </div>
+                <button class="btn btn-primary w-100 my-2">Facebook</button>
+                <button class="btn btn-danger w-100">Google</button>
+            </div>
+        </div>
+
+
+    </div>
+    </form>
+    <div class="text-center  text-muted my-2 ">Already have an account? <a href="{% url 'accounts:login' %}">Login</a>
+        here
+    </div>
+
+</div>
+{% endblock %}

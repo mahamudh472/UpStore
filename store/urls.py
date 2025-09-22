@@ -13,6 +13,10 @@ urlpatterns = [
     path('cart/', views.cart, name='cart'),
     path('product-details/<int:id>', views.productDetails, name='product-details'),
     path('add-to-cart/', views.addToCart, name='add-to-cart'),
+    path('buy-now/', views.buyNow, name='buy-now'),
+    path('add-review/', views.addReview, name='add-review'),
     path('remove-from-cart/<int:id>', views.removeFromCart, name='remove-from-cart'),
+    path('update-cart-item/', views.updateCartItem, name='update-cart-item'),
+    path('clear-cart/', views.clearCart, name='clear-cart'),
 ]
 urlpatterns += router.urls
