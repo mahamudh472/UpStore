@@ -65,7 +65,7 @@ def login_view(request):
                 return redirect("/")
             else:
                 messages.error(request, "Authentication failed")
-                return redirect("account:login")
+                return redirect("accounts:login")
         else:
             try:
                 us = User.objects.get(email=username).username
@@ -76,10 +76,10 @@ def login_view(request):
                     return redirect("/")
                 else:
                     print("Not a user")
-                    return redirect("account:login")
+                    return redirect("accounts:login")
                 
             except:
-                return redirect("account:login")
+                return redirect("accounts:login")
     return render(request, 'account/login.html')
 
 def logout_view(request):
